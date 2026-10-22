@@ -1,0 +1,15 @@
+{
+  "name": "git-batch",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Split a dirty git working tree into focused commits from a JSON plan.",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test test/git-batch.test.mjs",
+    "git:batch": "node skill/scripts/git-batch-commit.mjs"
+  },
+  "license": "MIT"
+}

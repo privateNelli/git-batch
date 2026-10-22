@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/git-batch/batch-config.schema.json",
+  "title": "git-batch config",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["batches"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "exclude": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "batches": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["message"],
+        "properties": {
+          "id": { "type": "string" },
+          "message": { "type": "string", "minLength": 1 },
+          "files": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 }
+          },
+          "skipIfEmpty": { "type": "boolean" },
+          "cachedPatches": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 }
+          },
+          "insertLines": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["file", "lines"],
+              "anyOf": [
+                { "required": ["insertAfter"] },
+                { "required": ["insertBefore"] }
+              ],
+              "properties": {
+                "file": { "type": "string", "minLength": 1 },
+                "insertAfter": { "type": "string", "minLength": 1 },
+                "insertBefore": { "type": "string", "minLength": 1 },
+                "skipIfIncludes": { "type": "string", "minLength": 1 },
+                "lines": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
