@@ -1,17 +1,13 @@
 # git-batch
 
+[English](README.en.md) | Español
+
 Split a dirty working tree into focused commits. One JSON batch becomes one `git commit`. The agent plans the batches. The script stages exactly the listed paths and commits them. Nothing is pushed and existing history is left alone.
 
-English quick start: from the target repo, on Windows,
+Pide `/git-batch` al agente. Escribe `scripts/commit-batches/<tema>.json`, corre `--dry-run` y commitea solo cuando tú lo confirmas.
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File C:\path\to\git-batch\install.ps1 -Target .
-```
-
-Then ask the agent for `/git-batch`. It writes `scripts/commit-batches/<topic>.json`, runs `--dry-run`, and commits only after you say so.
-
-```powershell
-node .cursor\skills\git-batch\scripts\git-batch-commit.mjs --config scripts\commit-batches\<topic>.json --dry-run
+node .cursor\skills\git-batch\scripts\git-batch-commit.mjs --config scripts\commit-batches\<tema>.json --dry-run
 ```
 
 ## Qué hace
@@ -137,7 +133,7 @@ Antes de la corrida real: el dry-run terminó sin errores, los mensajes se parec
 }
 ```
 
-Las rutas de `files` salen de la raíz del repo. También valen rutas relativas al JSON (`../../src/upload.ts`), que es el formato de los configs viejos de Katram.
+Las rutas de `files` salen de la raíz del repo. También valen rutas relativas al JSON (`../../src/upload.ts`).
 
 Campos, `insertLines` y `cachedPatches`: [skill/templates/schema.md](skill/templates/schema.md). Plantilla: [skill/templates/example.json](skill/templates/example.json).
 
