@@ -28,7 +28,7 @@ El script puede vivir fuera del repo, por ejemplo en `.cursor/skills/git-batch/s
    - cualquier otro: si existe junto al JSON se usa ese; si no, se usa desde la raíz del repo
 4. Si el path resultante sale del repo, el run aborta.
 
-Por eso un config de Katram con `../../src/app.ts` sigue funcionando, y un config nuevo puede decir `src/app.ts`.
+Por eso un config con rutas relativas al JSON (`../../src/app.ts`) funciona igual que uno con rutas desde la raíz (`src/app.ts`).
 
 Un archivo que no está en disco se stagea igual. `git add` de un path tracked que ya no existe registra el borrado. Para un borrado con ruta relativa al JSON, el prefijo `../` es obligatorio: sin el archivo en disco, la resolución no puede adivinar que `src/gone.ts` junto al JSON no era la intención.
 
